@@ -1,25 +1,27 @@
 package src;
 
+import java.util.concurrent.TimeUnit;
+
 public class MovimientoHilos extends Thread {
 	
 	private Ball bola;
+	private Board board;
 	
-	public MovimientoHilos() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public MovimientoHilos(Ball bola) {
+	public MovimientoHilos(Ball bola, Board board) {
 		this.bola =bola;
+		this.board = board;
 	}
 	
 	public void run() {
-		try {
-			for(;;) {
+		while(!Thread.currentThread().isInterrupted()) {
+			try {
 				bola.move();
-				Thread.sleep(1000);
+				board.repaint();
+				TimeUnit.MILLISECONDS.sleep(1000);
+			
+			}catch (InterruptedException ex) {
+				ex.printStackTrace();
 			}
-		}catch (InterruptedException ex) {
-			ex.printStackTrace();
 		}
 	}
 

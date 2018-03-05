@@ -48,7 +48,7 @@ public class Billiards extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(Width, Height);
 		setLocationRelativeTo(null);
-		setTitle("Pr√°ctica programaci√≥n concurrente objetos m√≥viles independientes");
+		setTitle("Pr·ctica programaciÛn concurrente objetos mÛviles independientes");
 		setResizable(false);
 		setVisible(true);
 	}
@@ -69,7 +69,8 @@ public class Billiards extends JFrame {
 			// TODO Code is executed when start button is pushed
 			Thread[] hilos = new Thread[N_BALL];
 			for(int j= 0; j < N_BALL; j++) {
-				hilos[j]= new Thread(new MovimientoHilos(balls[j]));
+				hilos[j]= new Thread(new MovimientoHilos(balls[j],board));
+				hilos[j].start();
 			}
 		}
 	}
