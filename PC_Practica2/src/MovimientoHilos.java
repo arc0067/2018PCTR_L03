@@ -1,12 +1,12 @@
 package src;
 
-public class CreacionDeHilos extends Thread {
+public class MovimientoHilos extends Thread {
 
-	public CreacionDeHilos() {
+	public MovimientoHilos() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CreacionDeHilos(Ball bola) {
+	public MovimientoHilos(Ball bola) {
 		
 	}
 	
