@@ -59,12 +59,18 @@ public class Billiards extends JFrame {
 		for(int i=0; i < balls.length; i++) {
 			balls[i] = new Ball();
 		}
+		
+		
 	}
 
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when start button is pushed
+			Thread[] hilos = new Thread[N_BALL];
+			for(int j= 0; j < N_BALL; j++) {
+				hilos[j]= new Thread(new MovimientoHilos(balls[j]));
+			}
 		}
 	}
 
