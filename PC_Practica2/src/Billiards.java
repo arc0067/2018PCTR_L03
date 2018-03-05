@@ -1,4 +1,5 @@
 package src;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -54,38 +55,49 @@ public class Billiards extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Metodo en el que inicializamos las bolas y declaramos los hilos.
+	 */
 	private void initBalls() {
 		// TODO init balls
 		balls = new Ball[N_BALL];
 		hilos = new Thread[N_BALL];
-		for(int i=0; i < balls.length; i++) {
+		for (int i = 0; i < balls.length; i++) {
 			balls[i] = new Ball();
 		}
 		board.setBalls(balls);
-		
-		
+
 	}
 
+	/**
+	 * Subclase en la que iniciamos el programa inicializando los hilos para que
+	 * funcione el boton Empezar.
+	 */
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when start button is pushed
-			for(int j= 0; j < N_BALL; j++) {
-				hilos[j]= new Thread(new MovimientoHilos(balls[j],board));
-				
+			for (int j = 0; j < N_BALL; j++) {
+				hilos[j] = new Thread(new MovimientoHilos(balls[j], board));
+
 			}
-			
-			for(int k =0; k < hilos.length; k++) {
+
+			for (int k = 0; k < hilos.length; k++) {
 				hilos[k].start();
 			}
 		}
 	}
 
+	/**
+	 * Subclase en la que paramos el programa con la excepcion interrupt que
+	 * recogemos en run(). Lanza una excepcion por cada hilo que hayamos
+	 * inicializado.
+	 */
 	private class StopListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when stop button is pushed
-			for(int i=0; i < hilos.length;i++) {
+			for (int i = 0; i < hilos.length; i++) {
 				hilos[i].interrupt();
 			}
 
