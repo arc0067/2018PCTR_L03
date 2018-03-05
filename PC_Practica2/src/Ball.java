@@ -40,6 +40,10 @@ public class Ball{
 		reflect();
 		
 		//TODO Check postcondition
+		assert x < Board.RIGHTBOARD : "INV: La bola se salio por el lado derecho ";
+		assert x > Board.LEFTBOARD: "INV: La bola se salio por el lado izquierdo ";
+		assert y < Board.TOPBOARD: "INV: La bola se salio por arriba ";
+		assert y > Board.BOTTOMBOARD: "INV: La bola se salio por abajo ";
 	}
 
 	private void reflect() {
