@@ -1,6 +1,5 @@
 package src;
 
-import java.util.concurrent.TimeUnit;
 
 public class MovimientoHilos implements Runnable{
 	
@@ -18,15 +17,18 @@ public class MovimientoHilos implements Runnable{
 	
 	@Override
 	public void run() {
-		while(!Thread.currentThread().isInterrupted()) {
-			try {
+		try {
+			while(!Thread.currentThread().isInterrupted()) {
 				bola.move();
 				board.repaint();
-				TimeUnit.MILLISECONDS.sleep(10);
-			
-			}catch (InterruptedException ex) {
-				ex.printStackTrace();
+				//TimeUnit.MILLISECONDS.sleep(10);
+				Thread.sleep(10);
 			}
+		
+		}catch (InterruptedException ex) {
+			//ex.printStackTrace();
+			System.err.println("Don't worry, le has dado al botón Parar: "+ex);
 		}
+		
 	}
 }
